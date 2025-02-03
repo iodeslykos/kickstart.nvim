@@ -121,6 +121,14 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Enable line wrapping
+vim.opt.wrap = true
+
+-- Enable tab options
+-- See `:help 'tabstop'` and `:help 'shiftwidth'`
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
 -- Save undo history
 vim.opt.undofile = true
 
