@@ -772,7 +772,7 @@ require('lazy').setup({
         json = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         yaml = { 'prettierd', 'yamlfmt' }, -- 'prettier', stop_after_first = true },
       },
-      format_on_save = {
+      format_after_save = {
         lsp_fallback = true,
         async = true,
         timeout_ms = 1000,
@@ -1077,7 +1077,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
