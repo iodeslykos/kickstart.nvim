@@ -698,7 +698,13 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'gofumpt',
+        'goimports',
+        'hclfmt',
+        'shfmt',  -- Used to format shell scripts
         'stylua', -- Used to format Lua code
+        'xmlformatter',
+        'yamlfmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -751,8 +757,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         bash = { 'shfmt' },
-        go = { 'gofmt', 'goimports' },
-        hcl = { 'tofu_fmt' },
+        go = { 'gofumpt', 'goimports' },
+        hcl = { 'hclfmt' },
         lua = { 'stylua' },
         markdown = { 'markdownlint' },
         python = { 'ruff_format', 'ruff_fix' },
@@ -770,7 +776,7 @@ require('lazy').setup({
         typescript = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         markdown = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         json = { 'prettierd' }, -- 'prettier', stop_after_first = true },
-        yaml = { 'prettierd', 'yamlfmt' }, -- 'prettier', stop_after_first = true },
+        yaml = { 'yamlfmt' }, -- 'prettier', stop_after_first = true },
       },
       format_after_save = {
         lsp_fallback = true,
