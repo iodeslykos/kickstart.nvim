@@ -1,8 +1,10 @@
 return {
   { -- Linting
-    'mfussenegger/nvim-lint',
-    { 'williamboman/mason.nvim', config = true },
-     'rshkarin/mason-nvim-lint',
+    'rshkarin/mason-nvim-lint',
+    dependencies = {
+      'mfussenegger/nvim-lint',
+      'williamboman/mason.nvim',
+    },
     enabled = true,
     event = { 'BufReadPre', 'BufNewFile', 'InsertLeave' },
     config = function()
@@ -27,7 +29,6 @@ return {
         'trivy',
         'typos',
         'yamllint',
-        'zsh',
       }
       require('mason-nvim-lint').setup {
         automatic_installation = true,

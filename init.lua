@@ -700,8 +700,10 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'gofumpt',
         'goimports',
+        'hadolint',
         'hclfmt',
-        'shfmt',  -- Used to format shell scripts
+        'markdownlint',
+        'shfmt', -- Used to format shell scripts
         'stylua', -- Used to format Lua code
         'xmlformatter',
         'yamlfmt',
@@ -774,7 +776,6 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd' }, -- "prettier", stop_after_first = true },
         typescript = { 'prettierd' }, -- 'prettier', stop_after_first = true },
-        markdown = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         json = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         yaml = { 'yamlfmt' }, -- 'prettier', stop_after_first = true },
       },
@@ -949,7 +950,12 @@ require('lazy').setup({
   --   'sheerun/vim-polyglot',
   -- },
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
   { -- GitHub Copilot. `:Copilot setup`
     'github/copilot.vim',
   },
