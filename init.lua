@@ -641,7 +641,7 @@ require('lazy').setup({
         groovyls = {},
         helm_ls = {},
         html = {},
-        java_language_server = {},
+        jdtls = {},
         jinja_lsp = {},
         jqls = {},
         jsonls = {},
