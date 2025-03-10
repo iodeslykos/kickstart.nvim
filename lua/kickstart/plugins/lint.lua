@@ -1,12 +1,72 @@
 return {
-
   { -- Linting
-    'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
+    'rshkarin/mason-nvim-lint',
+    dependencies = {
+      'mfussenegger/nvim-lint',
+      'williamboman/mason.nvim',
+    },
+    enabled = true,
+    event = { 'BufReadPre', 'BufNewFile', 'InsertLeave' },
     config = function()
       local lint = require 'lint'
+      local ensure_installed = {
+        'actionlint',
+        'ansible-lint',
+        'cmakelint',
+        'commitlint',
+        'cpplint',
+        'eslint_d',
+        'golangci-lint',
+        'hadolint',
+        'jsonlint',
+        'ktlint',
+        'luacheck',
+        'markdownlint',
+        'npm-groovy-lint',
+        'shellcheck',
+        'shellharden',
+        'tflint',
+        'trivy',
+        'typos',
+        'yamllint',
+      }
+      require('mason-nvim-lint').setup {
+        automatic_installation = true,
+        ensure_installed = ensure_installed,
+        -- ignore_install = {},
+      }
       lint.linters_by_ft = {
+        ansible = { 'ansible_lint' },
+        bash = { 'shellcheck' },
+        clojure = { nil },
+        commit = { 'commitlint' },
+        dockerfile = { 'hadolint' },
+        -- helm = { 'helm_lint'}, -- helm_lint is currently available.
+        inko = { nil },
+        janet = { nil },
+        -- java = { 'semgrep' }, -- Need to find an alternative here.
+        javascript = { 'eslint_d' },
+        json = { 'jsonlint' },
+        kotlin = { 'ktlint' },
+        -- gitcommit = { 'gitlint', 'gitleaks' }, -- Handled better by `pre-commit`.
+        go = { 'golangcilint' },
+        -- graphql = { 'prettierd' },
+        groovy = { 'npm-groovy-lint' },
+        -- latex = {},
+        lua = { 'luacheck' },
         markdown = { 'markdownlint' },
+        postgres = { 'sqlfluff' },
+        python = { 'ruff' },
+        -- rust = { 'bacon' }, -- bacon is present in the registry, but does not function.
+        sh = { 'shellcheck', 'shellharden' },
+        sql = { 'sqlfluff' },
+        terraform = { 'tflint' },
+        tofu = { 'tflint' },
+        -- toml = { '' },
+        -- text = { '' },
+        typescript = { 'eslint_d' },
+        yaml = { 'yamllint', 'actionlint' },
+        zsh = { 'zsh' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -41,8 +101,6 @@ return {
       -- lint.linters_by_ft['terraform'] = nil
       -- lint.linters_by_ft['text'] = nil
 
-      -- Create autocommand which carries out the actual linting
-      -- on the specified events.
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
       vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         group = lint_augroup,
