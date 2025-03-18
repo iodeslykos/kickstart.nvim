@@ -1,10 +1,8 @@
 return {
   { -- Linting
+    'mfussenegger/nvim-lint',
+    'williamboman/mason.nvim',
     'rshkarin/mason-nvim-lint',
-    dependencies = {
-      'mfussenegger/nvim-lint',
-      'williamboman/mason.nvim',
-    },
     enabled = true,
     event = { 'BufReadPre', 'BufNewFile', 'InsertLeave' },
     config = function()
