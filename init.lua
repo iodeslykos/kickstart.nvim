@@ -290,7 +290,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -336,7 +336,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -386,7 +386,7 @@ require('lazy').setup({
         lazy = false,
       },
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -494,7 +494,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -723,33 +723,26 @@ require('lazy').setup({
             yaml = {
               schemaStore = {
                 enable = true,
-                url = "https://www.schemastore.org/api/json/catalog.json",
+                url = 'https://www.schemastore.org/api/json/catalog.json',
               },
               format = { enabled = false },
               -- enabling this conflicts between Kubernetes resources, kustomization.yaml, and Helmreleases
               validate = false,
               schemas = {
-                kubernetes = "*.yaml",
-                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] =
-                "azure-pipelines*.{yml,yaml}",
-                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] =
-                "roles/tasks/*.{yml,yaml}",
-                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] =
-                "*play*.{yml,yaml}",
-                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
-                "*gitlab-ci*.{yml,yaml}",
-                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] =
-                "*api*.{yml,yaml}",
-                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
-                "*docker-compose*.{yml,yaml}",
-                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
-                "*flow*.{yml,yaml}",
+                kubernetes = '*.yaml',
+                ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
+                ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+                ['https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json'] = 'azure-pipelines*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks'] = 'roles/tasks/*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook'] = '*play*.{yml,yaml}',
+                ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+                ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+                ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
+                ['https://json.schemastore.org/dependabot-v2'] = '.github/dependabot.{yml,yaml}',
+                ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = '*gitlab-ci*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json'] = '*api*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = '*docker-compose*.{yml,yaml}',
+                ['https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json'] = '*flow*.{yml,yaml}',
               },
             },
           },
@@ -801,7 +794,7 @@ require('lazy').setup({
         'hadolint',
         'hclfmt',
         'markdownlint',
-        'shfmt',  -- Used to format shell scripts
+        'shfmt', -- Used to format shell scripts
         'stylua', -- Used to format Lua code
         'xmlformatter',
         -- 'yamlfmt', -- Too draconian.
@@ -876,8 +869,8 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd' }, -- "prettier", stop_after_first = true },
         typescript = { 'prettierd' }, -- 'prettier', stop_after_first = true },
-        json = { 'prettierd' },       -- 'prettier', stop_after_first = true },
-        yaml = { 'prettierd' },       -- 'prettier', stop_after_first = true },
+        json = { 'prettierd' }, -- 'prettier', stop_after_first = true },
+        yaml = { 'prettierd' }, -- 'prettier', stop_after_first = true },
       },
       format_after_save = {
         lsp_fallback = true,
@@ -1026,14 +1019,14 @@ require('lazy').setup({
       -- }
       require('onedark').setup {
         -- Main options --
-        style = 'darker',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-        transparent = true,           -- Show/hide background
-        term_colors = true,           -- Change terminal color as per the selected theme style
-        ending_tildes = true,         -- Show the end-of-buffer tildes. By default they are hidden
+        style = 'darker', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+        transparent = true, -- Show/hide background
+        term_colors = true, -- Change terminal color as per the selected theme style
+        ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
         cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
         -- toggle theme style ---
-        toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+        toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
         toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
 
         -- Change code style ---
@@ -1053,13 +1046,13 @@ require('lazy').setup({
         },
 
         -- Custom Highlights --
-        colors = {},     -- Override default colors
+        colors = {}, -- Override default colors
         highlights = {}, -- Override highlight groups
 
         -- Plugins Config --
         diagnostics = {
-          darker = true,     -- darker colors for diagnostic
-          undercurl = true,  -- use undercurl instead of underline for diagnostics
+          darker = true, -- darker colors for diagnostic
+          undercurl = true, -- use undercurl instead of underline for diagnostics
           background = true, -- use background color for virtual text
         },
       }
