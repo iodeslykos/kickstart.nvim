@@ -290,7 +290,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -336,7 +336,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
@@ -374,9 +374,19 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
+      {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+      },
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -484,7 +494,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -748,7 +758,7 @@ require('lazy').setup({
         'hadolint',
         'hclfmt',
         'markdownlint',
-        'shfmt', -- Used to format shell scripts
+        'shfmt',  -- Used to format shell scripts
         'stylua', -- Used to format Lua code
         'xmlformatter',
         'yamlfmt',
@@ -823,8 +833,8 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd' }, -- "prettier", stop_after_first = true },
         typescript = { 'prettierd' }, -- 'prettier', stop_after_first = true },
-        json = { 'prettierd' }, -- 'prettier', stop_after_first = true },
-        yaml = { 'yamlfmt' }, -- 'prettier', stop_after_first = true },
+        json = { 'prettierd' },       -- 'prettier', stop_after_first = true },
+        yaml = { 'yamlfmt' },         -- 'prettier', stop_after_first = true },
       },
       format_after_save = {
         lsp_fallback = true,
@@ -957,7 +967,8 @@ require('lazy').setup({
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     -- 'folke/tokyonight.nvim',
     -- 'joshdick/onedark.vim', -- GOAT.
-    'olimorris/onedarkpro.nvim', -- New hotness?
+    'navarasu/onedark.nvim', -- Recommended for neovim >= 0.5 by joshdick.
+    -- 'olimorris/onedarkpro.nvim', -- New hotness?
     -- 'KeitaNakamura/neodark.vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
@@ -967,13 +978,55 @@ require('lazy').setup({
       --     comments = { italic = false }, -- Disable italics in comments
       --   },
       -- }
+      -- require('onedarkpro').setup {
+      --   transparency = true,
+      -- }
+      require('onedark').setup {
+        -- Main options --
+        style = 'darker',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+        transparent = true,           -- Show/hide background
+        term_colors = true,           -- Change terminal color as per the selected theme style
+        ending_tildes = true,         -- Show the end-of-buffer tildes. By default they are hidden
+        cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+        -- toggle theme style ---
+        toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+        toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
+
+        -- Change code style ---
+        -- Options are italic, bold, underline, none
+        -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+        code_style = {
+          comments = 'none',
+          keywords = 'none',
+          functions = 'none',
+          strings = 'none',
+          variables = 'none',
+        },
+
+        -- Lualine options --
+        lualine = {
+          transparent = true, -- lualine center bar transparency
+        },
+
+        -- Custom Highlights --
+        colors = {},     -- Override default colors
+        highlights = {}, -- Override highlight groups
+
+        -- Plugins Config --
+        diagnostics = {
+          darker = true,     -- darker colors for diagnostic
+          undercurl = true,  -- use undercurl instead of underline for diagnostics
+          background = true, -- use background color for virtual text
+        },
+      }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'onedark' -- Valid for both onedark.nvim and onedarkpro.nvim themes.
-      vim.cmd.colorscheme 'onedark_vivid' -- Valid for onedarkpro.nvim.
+      vim.cmd.colorscheme 'onedark' -- Valid for onedark.nvim and onedarkpro.nvim themes.
+      -- vim.cmd.colorscheme 'onedark_vivid' -- Valid for onedarkpro.nvim.
       -- vim.cmd.colorscheme 'neodark'
 
       -- You can configure highlights by doing something like:
@@ -990,14 +1043,59 @@ require('lazy').setup({
     -- vim.g.airline_theme 'onedark',
     -- Set lualine as statusline. `:help lualine.txt`
     'nvim-lualine/lualine.nvim',
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = 'onedark_vivid',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
+    config = function()
+      -- NOTE: This is a simple statusline configuration.
+      --  You can customize it to your liking, or use a different statusline plugin.
+      --  See `:help lualine` for more information.
+      --
+      --  If you want to use a different statusline plugin, you can remove this
+      --  section and install the plugin of your choice.
+
+      -- NOTE: This is a simple statusline configuration.
+      --  You can customize it to your liking, or use a different statusline plugin.
+      --  See `:help lualine` for more information.
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'auto', -- 'auto' or 'onedark'
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 100,
+            tabline = 100,
+            winbar = 100,
+          },
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      }
+    end,
   },
   -- Recommended for improved syntax highlighting with 'joshdick/onedark.vim'.
   --    Incompatible with 'tpope/vim-sleuth'.
