@@ -1,8 +1,11 @@
+---
 default_install_hook_types: # Determines hooks installed by `pre-commit install --install-hooks`.
   - commit-msg
   - pre-commit
   - pre-push
+
 fail_fast: true
+
 repos:
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
     rev: v0.6.1
