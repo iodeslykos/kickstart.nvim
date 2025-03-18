@@ -1,6 +1,10 @@
 # Check Lua Formatting
 name: Check Lua Formatting
-on: pull_request_target
+on:
+  - pull_request_target
+  - pull_request
+  - push
+  - workflow_dispatch
 jobs:
   stylua-check:
     if: github.repository == 'iodeslykos/kickstart.nvim'
