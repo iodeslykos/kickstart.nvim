@@ -7,7 +7,6 @@ on:
   - workflow_dispatch
 jobs:
   stylua-check:
-    if: github.repository == 'iodeslykos/kickstart.nvim'
     name: Stylua Check
     runs-on: ubuntu-latest
     steps:
