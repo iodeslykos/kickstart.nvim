@@ -709,7 +709,51 @@ require('lazy').setup({
         taplo = {},
         terraformls = {},
         vimls = {},
-        yamlls = {},
+        yamlls = {
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              schemaStore = {
+                enable = true,
+                url = "https://www.schemastore.org/api/json/catalog.json",
+              },
+              format = { enabled = false },
+              -- enabling this conflicts between Kubernetes resources, kustomization.yaml, and Helmreleases
+              validate = false,
+              schemas = {
+                kubernetes = "*.yaml",
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] =
+                "azure-pipelines*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] =
+                "roles/tasks/*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] =
+                "*play*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
+                "*gitlab-ci*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] =
+                "*api*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
+                "*docker-compose*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
+                "*flow*.{yml,yaml}",
+              },
+            },
+          },
+        },
         zls = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -717,7 +761,6 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -761,7 +804,7 @@ require('lazy').setup({
         'shfmt',  -- Used to format shell scripts
         'stylua', -- Used to format Lua code
         'xmlformatter',
-        'yamlfmt',
+        -- 'yamlfmt', -- Too draconian.
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -834,7 +877,7 @@ require('lazy').setup({
         javascript = { 'prettierd' }, -- "prettier", stop_after_first = true },
         typescript = { 'prettierd' }, -- 'prettier', stop_after_first = true },
         json = { 'prettierd' },       -- 'prettier', stop_after_first = true },
-        yaml = { 'yamlfmt' },         -- 'prettier', stop_after_first = true },
+        yaml = { 'prettierd' },       -- 'prettier', stop_after_first = true },
       },
       format_after_save = {
         lsp_fallback = true,
